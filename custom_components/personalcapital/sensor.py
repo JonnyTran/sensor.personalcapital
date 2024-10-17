@@ -129,6 +129,8 @@ def setup_platform(hass, config, add_devices, discovery_info=None):
             continue_setup_platform(hass, config, pc, add_devices, discovery_info)
         except RequireTwoFactorException:
             request_app_setup(hass, config, pc, add_devices, discovery_info)
+        except Exception as e:
+            _LOGGER.error("An error occurred during login: %s", e)
     else:
         request_app_setup(hass, config, pc, add_devices, discovery_info)
 
